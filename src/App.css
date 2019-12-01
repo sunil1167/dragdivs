@@ -1,4 +1,4 @@
-.handle:hover {
+/* .handle:hover {
   cursor: grabbing;
 }
 
@@ -8,3 +8,12 @@
   border: 1px solid black;
   width: 20%;
 }
+#start {
+  margin: "20%";
+  display: inline;
+}
+
+#end {
+  margin: "20%";
+  display: inline;
+} */
