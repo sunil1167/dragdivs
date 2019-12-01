@@ -2,12 +2,6 @@ import React, { useEffect } from "react";
 import Draggable from "react-draggable";
 import "./App.css";
 import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
-import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,20 +17,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function App() {
-  const [spacing, setSpacing] = React.useState(10);
-  const [line, setLine] = React.useState(null);
+  const [line1, setLine1] = React.useState(null);
+  const [line2, setLine2] = React.useState(null);
   const classes = useStyles();
 
   useEffect(() => {
     let line1 = new window.LeaderLine(
       document.getElementById("start1"),
-      document.getElementById("end1")
+      document.getElementById("end1"),
+      { dash: { animation: true } },
+      { endLabel: "This is additional label" }
     );
-    setLine(line1);
+
+    let line2 = new window.LeaderLine(
+      document.getElementById("end1"),
+      document.getElementById("start2"),
+      { dash: { animation: true } }
+    );
+    setLine1(line1);
+    setLine2(line2);
   }, []);
 
   const handleDrag = () => {
-    line.position();
+    line1.position();
+    line2.position();
   };
   // render() {
   return (
@@ -53,7 +57,6 @@ export default function App() {
           axis="y"
           handle=".handle"
           onDrag={handleDrag}
-          defaultPosition={{ x: 0, y: 0 }}
           position={null}
           grid={[1, 1]}
           scale={1}
@@ -62,7 +65,54 @@ export default function App() {
             id="start1"
             className="handle"
             style={{
-              float: "left",
+              padding: "10px",
+              marginRight: "50px",
+              border: "1px solid black",
+              width: "20%"
+            }}
+          >
+            <div className="whole">
+              <div>This readme is really dragging on...</div>
+            </div>
+          </div>
+        </Draggable>
+
+        <Draggable
+          axis="y"
+          handle=".handle"
+          onDrag={handleDrag}
+          position={null}
+          grid={[1, 1]}
+          scale={1}
+        >
+          <div
+            id="end1"
+            className="handle"
+            style={{
+              padding: "10px",
+              marginRight: "60px",
+              marginTop: "60px",
+              border: "1px solid black",
+              width: "20%"
+            }}
+          >
+            <div className="whole">
+              <div>This readme is really dragging on...</div>
+            </div>
+          </div>
+        </Draggable>
+        <Draggable
+          axis="y"
+          handle=".handle"
+          onDrag={handleDrag}
+          position={null}
+          grid={[1, 1]}
+          scale={1}
+        >
+          <div
+            id="start2"
+            className="handle"
+            style={{
               padding: "10px",
               marginRight: "50px",
               border: "1px solid black",
@@ -76,17 +126,6 @@ export default function App() {
         </Draggable>
       </div>
 
-      <div
-        style={{
-          float: "right",
-          padding: "20px",
-          border: "1px solid black",
-          width: "20%"
-        }}
-        id="end1"
-      >
-        facebook
-      </div>
       {/* </div> */}
 
       {/* <div id="start">
