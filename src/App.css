@@ -17,3 +17,10 @@
   margin: "20%";
   display: inline;
 } */
+.drag:hover {
+  cursor: grab;
+}
+
+.drag:active {
+  cursor: grabbing;
+}
