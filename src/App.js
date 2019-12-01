@@ -27,10 +27,6 @@ export default function App() {
   const [line, setLine] = React.useState(null);
   const classes = useStyles();
 
-  const handleChange = event => {
-    setSpacing(Number(event.target.value));
-  };
-
   useEffect(() => {
     let line1 = new window.LeaderLine(
       document.getElementById("start1"),
@@ -38,17 +34,7 @@ export default function App() {
     );
     setLine(line1);
   }, []);
-  // eventLogger = (e, data) => {
-  //   console.log("Event: ", e);
-  //   console.log("Data: ", data);
-  // };
 
-  // componentDidMount() {
-  //   new window.LeaderLine(
-  //     document.getElementById("start"),
-  //     document.getElementById("end")
-  //   );
-  // }
   const handleDrag = () => {
     line.position();
   };
